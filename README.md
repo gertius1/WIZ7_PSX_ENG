@@ -87,13 +87,10 @@ THANKS!!!
 Links
 ==========================
 Release thread (general discussion and bug reports):
+https://neoromhacking.net/thread.php?pid=902#xwnd1
 
+Release download link:
+www.zaqmusic.com/WIZ7/WIZ7_ENG_PATCH_V1_0.zip
 
-Release page:
-
-
-YouTube demo video:
-
-
-
-
+GitHub:
+https://github.com/gertius1/WIZ7_PSX_ENG
