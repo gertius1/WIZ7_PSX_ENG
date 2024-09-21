@@ -1,0 +1,433 @@
+ToDo:
+=====
+
+Auslieferung:
+v xdelta erzeugen, anwenden, testen
+v README schreiben
+v Anleitung Menüs schreiben Beispielbild und Legende
+vv Create Character
+vv NPC Friendly
+vv NPC Neutral
+vv Fight (mit Parry)
+vv Pfeil nach oben normales Menü
+vv Charakterbogen
+
+v Anleitung Controller erstellen
+
+x Starke Party mit ausliefern, memcard oder gleich dabei, evtl noch schwache Party dazu
+
+- github repo erstellen, hochladen
+
+- neoRomhacking, RHDO Seiten Anmeldungen
+
+- links ins Readme
+
+- upload
+
+
+
+
+
+
+
+- ASSAY Waffen komischer String
+
+- Ausnahmen von der Übersetzung prüfen
+-- 3030-3048 garble jap
+-- 25840 Text gibt es nicht in JAP version
+-- letzter Block von JAP direkt übernommen, besser übersetzen? => sind wohl NPC Antworten
+--- Friedhof verfluchter Rod of passing kein Text in Textfenster
+
+- Menü Begegnung TRang, Annahme (Brother TShober):
+1533\TRUCE
+1490\PEACE
+1491\BRIBE
+1492\FORCE
+1493\GIVE
+
+Nice To Have: 
+=============
+- Text rendering doppelbreite Chars nicht ganz so breit, oder normalbreite (klein)
+-- Breite doppelbreite characters 12px 0xc
+
+- PSX.EXE vielleicht Menüfenster vergrößern, mehr Zeichen??
+
+- Textfenster Hintergrund dunkleres Grau, bessere Lesbarkeit
+-- bei NPC Dialogen ist es dunkler, gut! 2Mal überlagert
+
+
+
+================================================
+MIPS codes:
+
+return;
+08 00 e0 03
+nop;
+00 00 00 00
+
+c3 d3 01 0c     jal        FUN_render_string_with_special_chars             void FUN_render_string_with_spec
+61 d3 01 0c     jal        FUN_render_string_simple                         void FUN_render_string_simple(in
+bd 0e 02 0c     jal        memcpy                                           void * memcpy(uchar * param_1, u
+09 0f 02 0c     jal        FUN_calcStringLenght                             undefined FUN_calcStringLenght(u
+c4 b3 01 0c     jal        FUN_renderAsciiStringDBLMenuStory                void FUN_renderAsciiStringDBLMen
+01 b4 01 0c     jal        FUN_renderAsciiStringHLFMenuStory                undefined FUN_renderAsciiStringH
+02 72 01 0C		jal 	   FUN_splitStringAtSpace für Story Window
+00 26 03 0C		jal 	   kurz vor Ende vom Code, Adresse 800C98000 für eigenen Code
+
+================================================
+
+
+
+
+
+
+
+Erledigt/Herausgefunden:
+================================================
+vv 27955 CR statt LF testen
+vv 28210 GLOBE GIRL testen
+vv test 21720 witches ingame, fails in debug
+vv coil of th /serpent
+vv 2 items bei ritual zu viele Buchstaben: Ashes of Diam, Stone of Gates
+================================================
+- TALK.SCR testen => mach ich nicht mehr, die meisten ingame getestet
+--  Debug Setting wie bei Shak, alle Dialoge einem NPC in der Gameworld geben falls möglich
+-- ist möglich, aber ohne generelle Strings. Brauchts aber auch nicht unbedingt?!?
+--- Positon in TALK.SCR Pointertable ist Postion in der Spielwelt (z.B. Offset 0x36 ist Rossarian im Laden), Memoryadresse ist dann der Inhalt der abgespielt wird
+-- evtl alle Funktionscodes testweise aktivieren, um alle Dialogoptionen zu sehen
+================================================
+GANZ AM SCHLUß, nach jedem Sonderzeichen einchecken, damit man eventuelle zuviel gelöschte wiederherstellen kann:
+vv alle ungenutzen sonderzeichen aus ENG entfernen (die, die nicht im JAP sind), funktionscodes aus JAP automatisch übertragen
+vv alle Bindestriche durch Space ersetzen wegen Platzbeschränkung im Story Window, 
+vvv ACHTUNG, manchmal Bindestriche am Anfang
+- Sonderzeichen aus jap Version verstehen(zuordnen) und in eng Version nachbauen/anpassen (oder evtl in der Exe ändern zu denen die schon da sind, falls alle abgedeckt sind)
+!%&]@#| in jap code (werden sie einfach übersprungen? ist der code zum ignorieren? jap sonderzeichen gehen mit =...)
+- Großbuchstabe A weg bei "Ambush" (Sonderzeichen %)
+% Sonderzeichen überspringt einen Buchstaben:
+in FUN_handlePrepareSpecialChars() bei B538(8001ad38) das addiu weggemacht 01 00 31 26 => 00 00 00 00 
+=> doch buggy bei restlichen Strings Sonderzeichen
+=> manuell anpassen oder evtl doch Programmierlösung in EXE
+-- !%&]@#| sind andere Sonderzeichen als in Englischer Version! Ausprobieren. Evtl noch zusätzliche Funktionen, New Line? 
+Aber ENG Funktionen werden anders gehandhabt (=K,)
+--- %& ersetzt, []| geprüft, noch da: @... !... #..., scheinen gutmütig zu sein
+================================================
+Beobachtungen, die bestimmt mit dem Durchgehen der Zeilen weggehen:
+- Prison door: BLUE YELLOW RED
+- Prison Key: YOU FOUND % $
+- You made a $ level
+================================================
+- abschließend nach der Übersetzung (indices sollten dann ziemlich gleich sein, bis auf unterindices) eine Funktion schreiben, 
+die nochmal durchgeht und schaut ob zu jeder Funktion im JAP auch die Funktion im ENG existiert
+
+Funktionscodes übertragen  + Sonderzeichen weg nach Inhaltsvergleich
+Codes:
+- im C Programm in einzelne Codes aufteilen/suchen
+-- auf jeden Fall die Textcodes 900 herstellen
+-- andere dynamisch, je nachdem was geht, evtl Anfangsszene aber nicht mehrere Abläufe
+-- jeden einzelnen code finden und mit index in neue Liste zum Ausdrucken und abgleichen
+================================================
+- finished function codes up to index 27690
+-- compare with JAP, automatic takevoer, which ones? 900 and pos 0, rest manual check
+-- check funcodes in a debug environment
+--- make sure that index display ingame works correctly, debug! MSG
+================================================
+-- cleanup of arrays, maybe only use funcode array
+-- make work with ENG
+================================================
+- mit C Programm Indices JAP/ENG vergleichen, alle da?
+================================================
+- Content MSGJ.DBS/HDR anhand Indizes vergleichen mit Englisch 
+- Strings komplett gecheckt
+================================================
+SCENARIJ.DBS: replaced = with OF
+Mit regex find/replace:
+Find: =(/.*?)\x00
+Replace: OF\1
+================================================
+- Fight Menu und attack strings etc (RATTKIN en...) 
+-- erste Zeile Angreifer
+-- am besten hat funktioniert alle kurzen Binde-Wörter zu löschen
+--- vermutlich war der Textinhalt sonst zu lang, so dass er die erste Zeile verworfen hat
+--- man hat gesehen dass kurze Charakter Namen eher angezeigt werden
+================================================
+- C Funktion zum Abgleich der Funktionscodes zwischen Indices
+-- Parse JAP, wenn Code merke Index und Code, schau im ENG bei Index ob Code
+================================================
+- Rossarian sein Name nach Aufdecken hat nicht richtig zum Text verlinkt. 
+Habe unten den original JAP index 31675 probiert, ging nicht, dann Text nach oben in die 9100er Region kopiert, ging nicht.
+Dann nochmal 31675, aber alle End indizes von JAP übernommen =>  ging!
+================================================
+- Rossarian UKPYR war versteckt, Übersetzung hat´s erscheinen lassen, nochmal prüfen was da los ist.
+================================================
+TALK.SCR:
+erste zwei Bytes noch unbekannt, dann pointer table zu NPCs
+Jedes Menü gliedert sich in max 4 Bereiche (MISC, PPL, PLCS, FOLK), mit Unterantworten.
+Zuerst kommt die Überschrift, dann die Menüeinträge, wobei die Antworten schon mitkodiert sind (erste 2 byte kodieren den Index der Antwort)
+Manchmal kommen nach den ersten 2 byte (Index) nochmal 2 byte mit # und noch einem anderen Wert. Das bedeutet dass die Antwort unsichtbar ist, bis ein Funktionscode z.B. =923, aufgerufen wurde
+So könnte man z.B. den Character zuordnen, indem man bei YOU dem Index folgt zur Antwort
+Bei jedem Character nur die individuellen zusätzlichen Antworten abgelegt. Dann gibt es noch einen Allgemienblock, der über die Überschriften zugeordnet ist
+
+Strategie zur Übersetzung: dem Index folgen, und von da nach oben gehen, bis die eingetippte Frage kommt
+================================================
+=953, fügt Dialogoptionen hinzu
+================================================
+- C funktion, Hauptindex in JAP Translation kennzeichnen
+- C funktion rewriteMSG Sicherheitscheck gesamtgröße (Block 0xFF)
+================================================
+- Pssst! um of Get me out of here! (da wwar noch ein % im Text, gelöscht)
+================================================
+- Funktionscode für "new line" finden, Schilder, Aber manche Buchstaben kann man im Editor nicht eingeben
+================================================
+(nicht druckbare ASCII Zeichen anzeigen)
+Pfeil Rechts
+Pfeil links
+Pfeil Oben
+Pfeil unten
+================================================
+- Sound/Animation On/Off
+- reverse Huffman
+================================================
+- Content MSGJ.DBS/HDR anhand Indizes vergleichen mit Englisch (Text auf Japanisch anzeigen (ingame oder clevere Lösung), Google lens, mit Englisch vergleichen)
+-- falls clevere Lösung, jap Sonderzeichen Lookuptabelle finden (z.B. 0x84 evtl Kanji, sind nicht in ZENKAKU.TBL)
+-- clevere Lösung war jetzt, alle Texte als Screenshots automatisiert zu extrahieren (bisher nur Textfenster 1 als Referenz). Wie geht es weiter? 
+--- evtl noch alle extrahierten JAP texte ins Intro rendern mit C Software
+--- Händischer Vergleich mit Cosmic Forge Editor?
+-- Abgleich zwischen den Versionen. JAP ist Referenz wegen Ingame. Aber ENG ist auch Referenz, wegen Subindices und Struktur. 
+--- Das was fehlt in ENG ergänzen, ausser es sind Zwischenindices
+-- vor dieser Arbeit alle nötigen Tools zurechtlegen, dass alles schnell auf Knopfdruck geht 
+verschiedene EXEs oder Modi zurechtlegen (Bild erzeugen (JAP/ENG) /FunktionsCode ausprobieren/finale Version ingame testen)
+================================================
+For /F "Delims=" %G In ('Dir "%UserProfile%\Desktop\SCREENSHOTS_JAP_SUB_INV\*.jpg" /A:-D /B /O:N 2^>NUL ^| %SystemRoot%\System32\findstr.exe /I /R "[0123456789][0123456789]*\.jpg"') Do @If 1%~nG Lss 10000000 (Set "BaseName=1000000%~nG" & %SystemRoot%\System32\cmd.exe /V /D /C "Ren "%UserProfile%\Desktop\SCREENSHOTS_JAP_SUB_INV\%G" "!BaseName:~-5!%~xG"")
+================================================
+- C funktion: exchange string mit subindex, aber ohne txt file, sondern alles im programm, v.a. für Testen von Englischer version am Ende
+-- subroutine schreiben: find main index from subindex, sonst ist alles da:
+	int mainIndex = findMainIndexFromSubindex(textIndex)
+    int position = findHDRPositionByTextIndex(inStreamHDR, mainIndex);
+    int address = calculateDBSAddressFromHDRTextIdxposition(inStreamHDR, position);
+================================================
+- subindex funktion für englische version wegen Testen am Ende
+================================================
+- Jap Menü Memorycards am Anfang 
+================================================
+Tesseract:
+tesseract 32.jpg ocr_text -l jpn --oem 3 --psm 6
+================================================
+Image Magick
+extend border:
+magick 27.jpg -bordercolor white -border 0x1 27_ext.jpg
+
+Batch all in one:
+magick mogrify -path JPG/ -format jpg -crop 193x49+63+171 -contrast-stretch 5% -sigmoidal-contrast 30,70% -normalize *.BMP
+Better contrast:
+magick mogrify -path contrast/ -format jpg -contrast-stretch 50% -sigmoidal-contrast 50,90% -normalize *.BMP
+
+
+Resample 300 DPI
+magick -units PixelsPerInch image -resample 300 resultimage
+magick -units PixelsPerInch image -density 300 resultimage
+
+Crop:
+magick 660_1.BMP -crop 195x51+62+170 660_1.jpg
+magick 32.BMP -crop 193x49+63+171 32.jpg (ohne weißen Rand)
+magick 32.jpg -contrast-stretch 5% -sigmoidal-contrast 30,70% -normalize 32out.jpg
+
+Batch convert BMP to JPEG
+magick mogrify -path JPG/ -format jpg 25*.BMP
+
+Make montage with label
+magick montage -label '%t' 25*.BMP -tile 1x -mode Concatenate -density 225 -geometry +0+0 out.jpg
+================================================
+- doch den weg zurück vom texteditor ins game programmieren, huffman codierung und organisation in HDR/DBS, um mit suchen/ersetzen arbeiten zu können.
+================================================
+v mit starker Party durchlaufen, testen, Dialoge finden
+================================================
+- C Programm, Main indices vergleichen, Tabelle machen wo JAP/ENG nebeneinander aufgeführt ist (mit Notepad++ Compare gelöst)
+- sind unused strings in der JAP version? => ja sind drin mit Textcontent, stichprobenartig 22810 und 23825 gecheckt. Sind nur 15 von vielen Utnerschieden
+================================================
+- Hauptfrage ist, ob die substring logik in ENG und JAP gleich funktioniert, so dass ENG texte nur mit main index referenziert werden können und der Rest läuft automatisch
+-- dann nur die main indices vergleichen, substrings eindeutig kennzeichnen/erkennen, damit sie im Vergleich ignoriert werden können
+-- Muss einen String finden, der über 0x400 blockgrenzen geht mit substring
+=> ja, nachvollzogen mit 15020 "Walking through the trees...", 
+=> geht in der modded version über 0x10c00 mit subindex 15037 und wird ingame zusammenhängend korrekt ausgegeben
+================================================
+- Was passiert, wenn ich Strings im Editor einfüge? Speichergrenzen sind dann woanders. Kommen da die Main/Substrings durcheinander? Funzt das mit der neuen Substring Erkennung?
+Bei meinem Test waren dann auf einmal Mainstrings keine Mainstrings mehr (z.B. 15930 im mod file)
+Scheint jetzt zu gehen, aber was ist mit 24710? Fehlt in der Modded version, aber warum?? => als unused text enfernt um Speicher zu sparen
+================================================
+- Indexübergänge testen/verstehen, wenn im 0x400er Block nicht genug Platz war: Falls Subindex eins vorher == aktueller Index-1 dann könnte es zusammen gehören
+-- wie werden sie zusammengefasst?
+-- was passiert wenn ich substring auslese und darstelle?
+-- Hauptfrage ist, ob die substring logik in ENG und JAP gleich funktioniert, so dass ENG texte nur mit main index referenziert werden können und der Rest läuft automatisch
+--- dann nur die main indices vergleichen, substrings eindeutig kennzeichnen/erkennen, damit sie im Vergleich ignoriert werden können
+(kann z.B. sein dass in einer Version alle substrings in einen 400er Block passen, dann gibt es keinen substring, aber bei der anderen Sprachversion schon => stimmt, nachvollzogen z.B. 
+JAP 2350 in ENG geteilt wegen Speichergrenze)
+
+----> subindices gibt es nur wenn eine blockgrenze von 0x400 überschritten wurde. 
+sie werden im Editor automatisch dem MainIndex zugeordnet.
+Habe Software angepasst, dass man Subindices erkennen (Speichergrenze 0x400 überschritten) und rausfiltern kann. => NOCH FEHLER!!! z.B. JAP Index 200, ENG 3600+3700 untersuchen, 3150
+--- Ideen: Main index endet immer auf 0? => Nein, gibt auch SubIndices die auf 0 enden (z.B. 16390)
+--- Fehler: Main Index als Subindex erkannt. Gibt es den umgekehrten Fall, dass Sub als Main erkannt wird? =>eher nicht, da für Sub zwingend Blocküberschreitung nötig
+--- Size/Remain verstehen, evtl Schlüssel für Zuordnung
+--- Idee: Falls Subindex eins vorher == aktueller Index-1 dann könnte es zusammen gehören
+
+Im Editor tauchen nur die main indices auf. 
+Subindices sind aber im HDR file abgespeichert.
+Was passiert, wenn ich Strings einfüge? Speichergrenzen sind dann woanders. Kommen da die Main/Substrings durcheinander? => evtl egal, wenn ich die Vergleichsliste mit dem Original vorher erzeuge
+Bei meinem Test waren dann auf einmal Mainstrings keine Mainstrings mehr (z.B. 15930 im mod file)
+==> Ausprobieren, ob HDR File vom Editor gut geändert wird! Ja einmal gabs den Fall bereits (3600 nach Speichern im Editor geteilt und extra SubIndex 3611 bekommen)
+Für Übersetzung Vergleich nur der der Mainindices. Tabelle angefangen, trotzdem viele Unterschiede (noch falsche Unterscheidung Main/Sub)
+================================================
+v Sonderzeichen aus Code in ASCII suchen (=K, =091 etc)
+================================================
+v Englische Texte auch extrahieren? Hätte evtl Vorteil dass man sieht wie er gerendert wird (%Ambush)
+vv durchdenken warum Zwischenindices nix produzieren (wahrscheinlich einfach falsch von ChatGPT), wie ist es in Jap?
+-- folgende Textfenster 2,3,4... auch extrahieren, oder bei Bedarf Skript nochmal anwerfen individuell?
+--- hoffentlich nicht nötig, wenn die Zwischenindices verstanden sind
+-- ENG+JAP nochmal Bilder machen anhand von selbst mit C-Programm extrahierter MSG.HDR 
+================================================
+- Dialog "O Haio Strangers..." im Jap auf Sonderzeichen untersuchen (in OPEN.TXT kopieren)
+-- zumindest keine "=..."
+================================================
+v FUN_decodeHuffman debuggen, dass kein Stackoverflow mehr passiert
+v output FUN_decodeHuffman mit input FUN_ASCIItoZENKAKU koppeln, dass man den ganzen Weg duchmachen kann, für Anzeige eines Jap Textstrings im Intro movie (wegen Sonderzeichen)
+vv obige Funktionen mit Textindex verfügbar machen, damit nur mehr Index eingegeben werden muß, aber ASCII und/oder ZENKAKU ausgegeben wird
+vvv im HDR File die Speicheradresse für den Index holen, dann im DBS file den Huffman String auslesen und in die Funktionen geben
+vvvv Funktioniert noch nicht so ganz, zB Index 160 geht, Index 15000 geht nicht, bis auf letzten Substring (could smell the scent of Danger), aber den im ASCII Puffer als Zenkaku und nicht im 
+Zenkaku Puffer nach Konvertierung. Kann es sein dass es noch ein verstecktes Flag gibt, wie der String behandelt wird? 
+Wo soll so ein Flag sein? Evtl Automatisch nach Größe entscheiden welche Codierung? Oder 80 links von erstem Byte? Manchmal scheint es 1 byte zuviel zu sein, wo (ASCII/Huff/ZEN?)
+Noch ein ToDo: evtl Anzahl Substrings benutzen und nicht Differenz von Speicheradressen. wirklich nötig? evtl wenn man substrings besser organisieren will, zum rückcodieren
+Im Code PSX.EXE wird HuffString 0-terminiert. Nachbauen?
+-- ASM Code direkt in C kopieren, evtl ja ein Fehler vom Dekompilieren
+================================================
+v nächster Schritt: JAP Code in ENG version eingeben und schauen ob er was verändert.
+vv hakt, weil ich nicht alle JAP Strings auslesen/darstellen kann, die Strings wo nicht gehen mal mit den Bildern vergleichen, gibts Effekte?
+=> bug gefixed
+v Alle Codes durchprobieren und mappen (zum Verstehen), bzw. Methode zum automatischen Übertragen
+-- evtl brauche ich sie nicht alle verstehen, wenn sie funktionieren muß ichs nur kopieren
+--- 15100 =K, geht für Roadsign, aber weniger Zeichen in der Breite, unschön, vielleicht mit einem echten Sign weniger Text
+--- 19665 =G13.0, für Höhle geht jetzt auch, direkt copy/paste auis JAP ASCII
+--- 28650 =L37,=S0.0, Musik geht auch aber ohne Leerzeichen, Leerzeichen löschen!
+--- Zahlen =937, (31615) oder =941, (31605) haben zu keiner erkenntlichen Funktion geführt. Evtl speichert es Dialogoptionen?
+--- =I83,=F133,=I84,=F116, (28140) und =I83,=F138,=I84,=F120, (28250) keine Funktion ersichtlich
+--- =P2, dreht die party herum
+--- 21720 codes im text /als escape Zeichen
+================================================
+- wie kann ich in die TALK:SCR schreiben? mit ASCII->Zenkaku Funktion sollte es gehen. kompilieren und an den start bringen
+-- ja, geht so! (HUMAN als Teststring probiert)
+================================================
+- Menütext kürzen (wenn es nach rendering Verbesserungen nicht reinpasst)
+- Glitches wegmachen (hoffentlich durch Bleiben im Textfenster)=> ne, ist L/R auf Joypad, index finden siehe oben => Index 160
+================================================
+Next, find Character letter table:
+- Character name menu (fix letters, ist ein text, index finden) => Index 2600
+-- fertig auffüllen mit Sonderzeichen
+-- END Knopf wo?
+================================================
+- JAP Menu inGame (fix missing ORDER):
+-- MSG.HDR D5 07 60 01 08 08 bei Offset 0x152 zu D4 07 60 01 0A 08, Texte je eins runter verschieben
+================================================
+FUN_decodeHuffman in Visual Studio kompiliert, gefüttert mit Huffman Table, erzeugt Strings!
+Getestet mit ENG und JAP versionen von Strings und Table.
+JAP Output kann in OPEN.TXT eingesetzt werden und wird dann im Intro angezeigt.
+Muss aus Visual Studio Debugger mit "Wert kopieren" kopiert werden, dann in OPEN.TXT einsetzen, 
+überflüssiges löschen und speichern als Codierung ANSI
+Im Fall von %AMBUSH Index [15155] kein Sonderzeichen im JAP Text gefunden
+================================================
+- Text rendering mehr als ein Wort pro Zeile (nice to have)
+-- Trennung bei Leerzeichen gefunden
+-- Assembler code compilieren gelernt
+================================================
+Meta Strings:
+! 		New Line (Carriage Return)
+@ 		New Page
+# 		Road Sign Background
+^ 		Center Line Horizontally
+~ 		Play sound
+{$001$} Number Based
+_&_		Ampersand Symbol
+& 		Slow Text Display
+&%]		Timed Delay 1
+&%%]	Timed Delay 2
+&%%%]	Timed Delay 3
+&%%%%]	Timed Delay 4
+
+^ Platzhalter für Charaktername
+$ Platzhalter für Zahl (Gold, XP)
+
+!%&]@#| in jap code
+
+=K, geht für Roadsign, aber weniger Zeichen in der Breite, unschön, vielleicht mit einem echten Sign weniger Text
+=G13.0, für Höhle geht jetzt auch, direkt copy/paste auis JAP ASCII
+=L37,=S0.0, Musik geht auch aber ohne Leerzeichen, Leerzeichen löschen!
+=L
+=S
+=F
+=P 
+=E 
+=942 (Zahl)
+19150\=H,
+20805\=J0,
+20900\=J3,
+================================================
+ChatGPT
+write the assembler code for a replacement function that does the following:...
+================================================
+Debugging in no$psx gleiche Adressen wie in Ghidra, einfach Debug Adresse setzen, dann mit F7 steppen
+================================================
+PSX.EXE adresse 2590C = Ghidra 0x8003510C  jal FUN_splitStringAtSpace für Story Window
+Hat geklappt, das auf das Ende vom Code umzuleiten!!
+================================================
+--- für Übersetzungen, ausprobieren, Snap in Emulator zu machen, kurz vor Textausgabe
+---- SNAP für ingame geht nicht, lädt alte version. Vor Laden im Menü geht!!!!!!!
+---- SNAP für ingame geht für Dialoge, aber nicht für exe Modifikationen
+---- SNAP vor Movie vor Laden im Menü geht!!!!!!
+================================================
+TALK.SCR: am PC nicht vorhanden. vermutlich Dialogstrukturen (Spielerantworten, die nicht eingetippt werden können wie am PC).
+Am Anfang gibt es 2Byte 55 03 = 0x355=853, danach kommen 96 Memoryadressen, die weiter unten auf das gleiche File zeigen (Pointertable).
+Memoryadresse: Beginnt mit 01 00 und dann 2-byte Zenkaku Buchstaben als hex codiert.
+Zuerst kommt wahrscheinlich ein Aufzählungszeichen 80 53 82 6C 8B BA 80 54 <...>, dann einmal 0x00, dann der Text
+Man kann es in die OPEN.TXT Untertitel einfach reinkopieren, damit es im Opening angezeigt wird
+(muss also noch durch die Zenkaku=>ASCII codierung, damit es ASCII wird)
+================================================
+Video Untertitel liegen in CDS/M/OPEN.TXT
+Format ist Zenkaku Buchstaben, 2byte hex. Z.B. konnte ich mit 0x80A5 füllen um die Zeile AAAAAAAAA zu bekommen 
+Ist quasi Jap Textformat ohne Huffmancodierung (Gamestrings sind ja Huffman=>Zenkaku)
+4 Zeilen a 26 Zeichen zu einem Zeitpunkt möglich, der Rest wird ignoriert
+================================================
+- vielleicht sind die untersuchten Render Funktionen nicht direkt fürs Rendering da, sondern holen nur die entsprechenden Chars aus dem Memory
+================================================
+In der EXE die Position 0x5D3F8 von 60=>70 geändert, um im Englischen Text Kleinbuchstaben zu ermöglichen (Dekompilation mit Ghidra, ChatGPT, Funktion FUN_ASCIItoZENKAKU gefunden, Vergleichswert 0x5F war wohl falsch)
+================================================
+MSGJ.HDR und MSGJ.DBS englische Versionen übernehmen können.
+Zuerst englische MSG.DBS im Editor gekürzt (unused strings gelöscht), um Platz zu schaffen.
+Dann die ersten paar Indices aus MGSJ.HDR übernommen, aber die Textinhalte ans Ende von MSG.DBS gesetzt, dann die Memory Addresses in 
+MSG.HDR geändert aufs Ende der DBS Datei. 
+Huffman Table MISC.HDR datei gesamt ausgetauscht.
+Hat funktioniert, lädt englische Texte (stellt Jap Menü am Anfang falsch dar wegen unpassender Huffman Tabelle)!
+================================================
+MISC.HDR => Huffman Baum für die Textkodierung
+MSGJ.DBS => Alle ingame Strings, Huffman codiert, anhand MISCJ.HDR (Huffman Baum)
+MSGJ.HDR => Header; Format mit BytePairs (BigEndian), Index, Pos, Substrings, letztes Byte aber Block von 0x400
+maximale Größe der String Datei0x3FFFF weil nur ein byte für die zahl des Blocks angegeben ist (FF*0x400)
+NEWGAME (ist identisch)
+PCFILE
+SCENARIJ.DBS => Monster und Items, in ASCII kodiert, kann direkt ausgetauscht werden
+SCENARIO.HDR => Header
+
+ZENKAKU.TBL enthält die Font Table 16Bit. wird mit Funktion FUN_ASCIItoZENKAKU ausgelesen, ChatGPT reverse Engineered; 
+geht mit Index rein, erhält bytepaar für den buchstaben zurück, vollständige Tabelle im Ordner abgelegt. Auslesefunktion wurde geändert um Kleinbuchstaben zu reparieren, s.o.
+
+PCFILE (Player Characters?) enthält die Namen der vorgefertigten Charaktere. Werden auf Englisch übernommen, Strukturen fast gleich. Änderungen zu THESIS wurde nicht übernommen aber ich hab schon Jap und Eng Versionen gesehen. Stehen evtl nochmal woanders.
+====================================
+Differenz MSG.DBS zu MSGJ.DBS = 0xC400
+MSGJ.DBS kann auf die Größe von MSG.DBS erweitert werden, kein Absturz. Andersrum, MSG.DBS verkleinern bringt trotzdem Absturz
+MSG.HDR ist eine Art Pointer Table, abgeglichen mit dem Texteditor aus Cosmic Forge (Index, Subindex und in der Mitte ungeklärt. Länge? Position?).
+Anhand des Texteditors sind wahrscheinlich alle Menü/Story/Gamestrings in MSG.DBS (Charaktererstellung etc)
+
+MASTER.HDR (PC) entspricht CDS.HDR(PSX), PSX Version hat ein paar Zeilen mehr.
+DISK.HDR(PC) hat keine Entsprechung auf PSX
+====================================
+MSGJ.HDR ist MSG.HDR um 0x12 bytes verschoben. In Jap Version sind 0x12 bytes am Anfang hinzugefügt
+Laut Ptr Table sind bei MSGJ.DBS am Anfang 0x030B Bytes eingefügt (offset beim ersten Block).
+Schon einiges ausprobiert (HDR erweitern, DBS erweitern). Wahrscheinlich muss ich beides erweitern und den Offset 0x030B beim Englischen MSG.HDR jeweils dazuaddieren=> C software
+Am Ende unterscheiden sich die Indices. Evtl mit C Software vergleichen und auswerten.

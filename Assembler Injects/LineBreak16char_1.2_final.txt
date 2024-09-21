@@ -1,0 +1,230 @@
+
+int FUN_strchr(char *inString,char character)
+
+{
+  char cVar1;
+  short sVar2;
+  char *pcVar3;
+  short pos, prevPos;
+  
+  pos = 0;
+  prevPos = 0;
+  sVar2 = 0;
+  cVar1 = *inString;
+  pcVar3 = inString + 1;
+  while( true ) {
+    if (cVar1 == '\0') {
+        if (prevPos&&((*(inString+prevPos+1) == '!')||
+            (*(inString+prevPos+1) == '%')||
+            (*(inString+prevPos+1) == '&')||
+            (*(inString+prevPos+1) == ']')||
+            (*(inString+prevPos+1) == '@')||
+            (*(inString+prevPos+1) == '#')||
+            (*(inString+prevPos+1) == '|')||
+            (pos>15)))
+                return (int)prevPos;
+        else
+            return -1;
+    }
+    if (cVar1 == character) {
+        if (pos>15)
+            return (int)prevPos;
+        else
+            prevPos = pos;
+    }
+    sVar2 = sVar2 + 1;
+    cVar1 = *pcVar3;
+    pcVar3 = pcVar3 + 1;
+    pos++;
+  }
+  return (int)sVar2;
+}
+=====================================================
+
+.include "\SrcAll\Header.asm"
+.include "\SrcAll\BasicMacros.asm"
+
+FUN_strchr:
+  addiu $sp,$sp,-32
+  sw $fp,28($sp)
+  move $fp,$sp
+  sw $4,32($fp)
+  move $2,$5
+  sb $2,36($fp)
+  sh $0,16($fp)
+  sh $0,18($fp)
+  sh $0,10($fp)
+  lw $2,32($fp)
+  nop
+  lbu $2,0($2)
+  nop
+  sb $2,8($fp)
+  lw $2,32($fp)
+  nop
+  addiu $2,$2,1
+  sw $2,12($fp)
+L8:
+  lb $2,8($fp)
+  nop
+  bne $2,$0,L2
+  nop
+
+  lh $2,18($fp)
+  nop
+  beq $2,$0,L3
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,33
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,37
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,38
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,93
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,64
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,35
+  beq $3,$2,L4
+  nop
+
+  lh $2,18($fp)
+  nop
+  addiu $2,$2,1
+  lw $3,32($fp)
+  nop
+  addu $2,$3,$2
+  lb $3,0($2)
+  li $2,124
+  beq $3,$2,L4
+  nop
+
+  lh $2,16($fp)
+  nop
+  slt $2,$2,16
+  bne $2,$0,L3
+  nop
+
+L4:
+  lh $2,18($fp)
+  b L5
+  nop
+
+L3:
+  li $2,-1
+  b L5
+  nop
+
+L2:
+  lb $3,8($fp)
+  lb $2,36($fp)
+  nop
+  bne $3,$2,L6
+  nop
+
+  lh $2,16($fp)
+  nop
+  slt $2,$2,16
+  bne $2,$0,L7
+  nop
+
+  lh $2,18($fp)
+  b L5
+  nop
+
+L7:
+  lhu $2,16($fp)
+  nop
+  sh $2,18($fp)
+L6:
+  lhu $2,10($fp)
+  nop
+  addiu $2,$2,1
+  andi $2,$2,0xffff
+  sh $2,10($fp)
+  lw $2,12($fp)
+  nop
+  lbu $2,0($2)
+  nop
+  sb $2,8($fp)
+  lw $2,12($fp)
+  nop
+  addiu $2,$2,1
+  sw $2,12($fp)
+  lh $2,16($fp)
+  nop
+  andi $2,$2,0xffff
+  addiu $2,$2,1
+  andi $2,$2,0xffff
+  sh $2,16($fp)
+  b L8
+  nop
+
+L5:
+  move $sp,$fp
+  lw $fp,28($sp)
+  addiu $sp,$sp,32
+  jr $ra
+  nop
+================================================
+	@4D028
+	8005c828 00 26 03 0C	jal 	   kurz vor Ende vom Code, Adresse 800C98000 für eigenen Code (0xBA000)
+statt
+        8005c828 c2 b5 01 0c    jal        FUN_strchr
+
+
+0xBA000:
+
+E0 FF BD 27 1C 00 BE AF 21 F0 A0 03 20 00 C4 AF 21 10 A0 00 24 00 C2 A3 10 00 C0 A7 12 00 C0 A7 0A 00 C0 A7 20 00 C2 8F 00 00 00 00 00 00 42 90 00 00 00 00 08 00 C2 A3 20 00 C2 8F 00 00 00 00 01 00 42 24 0C 00 C2 AF 08 00 C2 83 00 00 00 00 56 00 40 14 00 00 00 00 12 00 C2 87 00 00 00 00 4F 00 40 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 21 00 02 34 42 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 25 00 02 34 38 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 26 00 02 34 2E 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 5D 00 02 34 24 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 40 00 02 34 1A 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 23 00 02 34 10 00 62 10 00 00 00 00 12 00 C2 87 00 00 00 00 01 00 42 24 20 00 C3 8F 00 00 00 00 21 10 62 00 00 00 43 80 7C 00 02 34 06 00 62 10 00 00 00 00 10 00 C2 87 00 00 00 00 10 00 42 28 04 00 40 14 00 00 00 00 12 00 C2 87 2A 00 00 10 00 00 00 00 FF FF 02 24 27 00 00 10 00 00 00 00 08 00 C3 83 24 00 C2 83 00 00 00 00 0C 00 62 14 00 00 00 00 10 00 C2 87 00 00 00 00 10 00 42 28 04 00 40 14 00 00 00 00 12 00 C2 87 1A 00 00 10 00 00 00 00 10 00 C2 97 00 00 00 00 12 00 C2 A7 0A 00 C2 97 00 00 00 00 01 00 42 24 FF FF 42 30 0A 00 C2 A7 0C 00 C2 8F 00 00 00 00 00 00 42 90 00 00 00 00 08 00 C2 A3 0C 00 C2 8F 00 00 00 00 01 00 42 24 0C 00 C2 AF 10 00 C2 87 00 00 00 00 FF FF 42 30 01 00 42 24 FF FF 42 30 10 00 C2 A7 82 FF 00 10 00 00 00 00 21 E8 C0 03 1C 00 BE 8F 20 00 BD 27 08 00 E0 03 00 00 00 00
