@@ -3,7 +3,7 @@
 
     GhidraFunctions.h
     Created: 1 Aug 2024 4:22:50am
-    Author:  Zaq
+    Author:  Gertius
 
   ==============================================================================
 */
