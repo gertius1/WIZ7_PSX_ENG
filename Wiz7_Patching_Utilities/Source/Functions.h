@@ -3,7 +3,7 @@
 
     Functions.h
     Created: 5 Aug 2024 1:33:12pm
-    Author:  Zaq
+    Author:  Gertius
 
   ==============================================================================
 */
@@ -29,7 +29,7 @@ int getDBSAddressByHDRanyIndex(FileInputStream* inStreamHDR, FileInputStream* in
 //manipulates HDR file to move string address from one index to another for displaying text ingame at the same gameworld postion
 int swapTextByIndex(int sourceIdx, int destIdx, bool JAP);
 
-//takes any index, not just main indices and writes it´s text content address to the destIdx
+//takes any index, not just main indices and writes itÂ´s text content address to the destIdx
 int swapTextBySubIndex(int sourceSubIdx, int destIdx, bool JAP);
 
 //finds textstring in DBS file, decodes Huffman to ASCII and optionally converts the ASCII to ZENKAKU
