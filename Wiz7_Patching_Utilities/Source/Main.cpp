@@ -32,74 +32,22 @@ int main(int argc, char* argv[])
     std::cout << "\n\nWiz7 Patching Utilities\n\n";
     std::cout << "Created with JUCE 7.0.8.\n\n\n";
 
-
-
-    // 
-    // patcher needs to be able to
-    // - load Jap/Eng texts from indices, to display ingame/or in intro Movie (TALK.SCR)
-    // {
-    // ingame:
-    // basically just rewrite indices from MSG.HDR or MSGJ.HDR (choose JAP/ENG replace, start with JAP because ENG is possible in Editor, maybe not needed here)
-    //  
-    // intro movie:
-    // find string through pointer table in TALK.SCR
-    // copy string to OPEN.TXT
-    // }
-
     int retVal = 0;
-
-    //int textIndex = 28650; //Musik
-    //int textIndex = 15000; //nur der letzte Subindex geht
-    //int textIndex = 15100; //RoadSign #
-    //int textIndex = 100;
-    //int textIndex = 20;
-    //int textIndex = 14500; //quite short string, works fine
    
     //int textIndex = 14300;
-
+    //int textIndex = atoi(argv[1]);
     int windowIndex = 15105;
-
     bool JAP = false;
 
-    
-    //int textIndex = atoi(argv[1]);
-    //retVal = swapTextByIndex(textIndex, windowIndex, JAP);
+    //select function here
 
-    //retVal = extractTextByIndex(textIndex, JAP, false);
-     
+    //retVal = swapTextByIndex(textIndex, windowIndex, JAP);
+    //retVal = extractTextByIndex(textIndex, JAP, false);    
     //parseHDRfile(JAP);
     //writeDBSFromCSV(JAP);
     //markMainIndices(JAP);
-
     //writeTalkScr();
-
     compareFunctionCodes();
-
-    // 
-    //
-    // - rewrite MSG.HDR/DBS to work with JAP version (really needed? did it once per hand, does it change often?)
-    // MSGJ.HDR und MSGJ.DBS englische Versionen übernehmen können.
-    // Zuerst englische MSG.DBS im Editor gekürzt(unused strings gelöscht), um Platz zu schaffen.
-    // Dann die ersten paar Indices aus MGSJ.HDR übernommen, aber die Textinhalte ans Ende von MSG.DBS gesetzt, dann die Memory Addresses in
-    // MSG.HDR geändert aufs Ende der DBS Datei.
-    // Huffman Table MISC.HDR datei gesamt ausgetauscht.
-    // Hat funktioniert, lädt englische Texte(stellt Jap Menü am Anfang falsch dar wegen unpassender Huffman Tabelle)!
-    // 
-    // 
-    // 
-    //
-    // - rewrite PSX.EXE to include all mods (put code at the end, rewrite pointer for function call)
-    // -- small letters instead of capital ones (Position 0x5D3F8 von 60=>70 geändert)
-    // -- fix linebreaks
-    // --- 2590C = Ghidra 0x8003510C  jal FUN_splitStringAtSpace für Story Window
-    // --- 00 26 03 0C		jal 	   kurz vor Ende vom Code, Adresse 800C98000 für eigenen Code
-    // -- fix special char handling (once it´s ready)
-    // -- bigger menu windows (once it´s ready)
-    //
-    // 
-    // 
-    // - maybe build whole mod from scratch, copying and modifying all files
-    //
 
     return retVal;
 }
