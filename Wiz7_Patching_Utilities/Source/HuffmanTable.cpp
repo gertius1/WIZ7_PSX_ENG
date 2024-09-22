@@ -3,7 +3,7 @@
 
     HuffmanTable.cpp
     Created: 17 Aug 2024 3:37:53pm
-    Author:  Zaq
+    Author:  Gertius
 
   ==============================================================================
 */
