@@ -5,6 +5,8 @@ Some explanation:
 - DBS can be decoded via the function void FUN_decodeHuffman(...)
 - the result is Shift JIS encoded for Sega Saturn and some unknown coding for PSX. For PSX I used in-game display to show all the strings.
 - working with Saturn texts should be even easier because of the straightworfard Shift JIS encoding
+- Saturn MSGJ files seem to be even closer to the English DOS original than the PSX, but this is a first impression
+- they don´t seem to contain any discernible function strings like the PSX version
 
 Unfortunately for Saturn, the SCENARIJ file format is not the same. Seems to be split into multiple files:
 - DB_ITEM6.BDA  (and 7)
@@ -14,4 +16,5 @@ Unfortunately for Saturn, the SCENARIJ file format is not the same. Seems to be 
 - DB_TREA6.BDA  (and 7)
 
 The contents of the MAZE file were found completely in SCENARIJ.DBS
-The structure of the ITEM (and probably MONS) file is the same as the respective section in the SCENARIJ.DBS but instead of the name there seems to be a pointer address
+The structure of the ITEM (and probably MONS) file is the same as the respective section in the SCENARIJ.DBS but instead of the name there seems to be a pointer address.
+It is unknown at the moment, where the pointerss point to, and where the Item/Monster/Spell names are stored.
