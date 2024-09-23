@@ -3,7 +3,7 @@ Some explanation:
 - all texts are huffman coded, PSX and SAT
 - MISCJ.HDR contains the huffman table, MSGJ.HDR is the header file with index info, MSGJ.DBS holds all the texts. 
 - DBS can be decoded via the function void FUN_decodeHuffman(...)
-- the result is Shift JIS encoded for Sega Saturn and some unknown coding for PSX. For PSX I used in-game display to show all the strings.
+- the result is Shift JIS encoded for Sega Saturn (it was some unknown coding for PSX. For PSX I had to use in-game display to show all the strings)
 - working with Saturn texts should be even easier because of the straightworfard Shift JIS encoding
 - Saturn MSGJ files seem to be even closer to the English DOS original than the PSX, but this is a first impression
 - they don´t seem to contain any discernible function strings like the PSX version
