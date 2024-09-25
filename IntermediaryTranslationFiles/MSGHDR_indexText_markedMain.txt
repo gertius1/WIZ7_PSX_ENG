@@ -6518,7 +6518,10 @@
 18885\faithful brothers, and I shall help you in your endeavors... &%]
 18886\Should you choose the path of the 5 Flowers, then shall I do my part
 18887\to teach you, but you must be prepared to make sacrifice...
-18895*\NO/YE/SURE/OK/
+18895*\NO/
+YE/
+SURE/
+OK/
 18896\
 18897\Do you wish to learn the ways of the 5 Flowers?
 18900*\Thy destiny then is thy own... &%]
@@ -8256,7 +8259,8 @@
 22604\DUTY - POWER - VICTORY!!!
 22610*\I was beginning to worry about you new recruits... &%]
 22611\Give me a briefing of your mission...
-22615*\NO/YE/
+22615*\
+NO/YE/
 22616\
 22617\Did you find any T'Rang hiding out in the area?
 22620*\Hmmmm, maybe just a false sighting then... &%]
@@ -8604,7 +8608,8 @@
 23808\for you to halt...
 23810*\Authorized personnel only... &%]
 23811\Papers please...
-23815*\NO/
+23815*\
+NO/
 23816\
 23817\Do you show the Umpani Guardsman your orders?
 23820*\New recruits should report to the enlistment station, due south...
@@ -8629,7 +8634,8 @@
 23857\@As you enter the room, a burly guard rapidly approaches...
 23860*\This area is restricted... &%]
 23861\Let's see your orders...
-23865*\NO/YE/SURE/OK/
+23865*\
+NO/YE/SURE/OK/
 23866\
 23867\Do you show the guard your orders?
 23870*\INTRUDER ALERT! &%]
@@ -9548,7 +9554,8 @@
 25970*\Inside the box is a package of brown waxen wrappings... &%]
 25971\Carefully opening the package, you uncover a preserved piece of
 25972\parchment...
-25975*\NO/YES/
+25975*\NO/
+YES/
 25976\
 25977\Do you wish to search some more?
 25980*\Searching carefully, you find nothing...
@@ -9838,7 +9845,8 @@
 27065*\HOST MODULE: &Black Ship Command &LOADED
 27067*\HOST MODULE: &Central Security &LOADED &%]
 27068\LOCATION: &Remote Operation &Station #2
-27070*\S/L/	F/E/
+27070*\S/
+L/	F/E/
 27071\Command Not Recognized
 27072\HOST: Black Ship Command &Options: S)tatus L)og F)iles E)xit
 27075*\HOST TERMINATED
@@ -9858,7 +9866,8 @@
 27125*\Terminal Linkage Disconnect &%]
 27126\Remote Access Terminated &%
 27200*\* FILES *
-27205*\S/P/E/
+27205*\S/
+P/E/
 27206\Function Not Available
 27207\FILES: S)hip P)ersonnel E)xit
 27210*\EXITING FILES...
@@ -9952,7 +9961,8 @@
 27420*\CENTRAL SECURITY/
 27421\
 27422\HOST MODULE:
-27430*\S/C/E/
+27430*\S/
+C/E/
 27431\Command Not Recognized
 27432\HOST: Central Security &Options: S)tatus C)ontrol E)xit
 27435*\* SECURITY STATUS * &
@@ -10222,7 +10232,8 @@
 27932\lively spacegirl with whom your destiny seems inextricably
 27933\intertwined continues... &%]
 27934\We need a ship!!
-27955*\NO/YES/
+27955*\
+NO/YES/
 27956\
 27957\Did you find a spacecraft?
 27960*\I have an idea... &%]
