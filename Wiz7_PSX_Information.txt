@@ -67,7 +67,7 @@ Index 2 bytes, DBS Position 2 bytes, nr of substrings 1 byte, nrOfBlock (0x400 s
 max size of DBS file is 0x3FFFF because only one byte is available for nrOfBlock (0xFF * 0x400)
 CDS/D/PCFILE contains starting player characters, same fileformat as on PC, can be replaced with hex editor
 CDS/D/SCENARIJ.DBS => Monsters and Items, ASCII encoding, can be exchanged directly, subtle differences had to be adapted ("=" for "of")
-At the end there was a difference in the script "THE SPACESHIP" id77. We took over all ENG scripts, but the JAP worked different. Had to be taken over from JAP to ENG using the Cosmic Forge incident editor. 
+At the end there was a difference in the script "THE SPACESHIP" id77. Took over all ENG scripts, but the JAP worked different. Had to be taken over from JAP to ENG using the Cosmic Forge incident editor. 
 CDS/D/SCENARIO.HDR => Header
 
 CDS/D/ZENKAKU.TBL font Table 16Bit. read with function FUN_ASCIItoZENKAKU (exe 8006cb80):
