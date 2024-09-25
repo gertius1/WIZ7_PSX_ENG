@@ -524,7 +524,7 @@ I'm in 485
 1613\ Maybe you forgot ...
 1614\ What do you want help with ?
 1615\ Hahaha !
-1616\ What? i don't know···
+1616\ What? i don't knowÂ·Â·Â·
 1617\' s I heard the rumors...
 1618\ What? I've never heard that name ...
 1619\
@@ -546,7 +546,7 @@ I'm in 485
 1635\ That's interesting...
 1636\ Thank you for letting me know...
 1637\ Let's think about it...
-1638\ I've heard of do not have···
+1638\ I've heard of do not haveÂ·Â·Â·
 1639\ What are you looking for ?
 1640\ What do I have to do ?
 1641\ Hehe, I don't know anything I didn't hear you
@@ -1741,7 +1741,7 @@ I'm in 485
 7190\ Nel / Tomar / Tomari /
 7191\ Uminoumibe /
 7192\ What is it ?
-7193\ Who •/ Who is it? / Who / Who is it?
+7193\ Who Â•/ Who is it? / Who / Who is it?
 7194\ Where? ?Where is it? / Where is it?
 7195\ How / How / How about /
 7196\ Its ?/ Itsuga / Itsuda / Its
@@ -2116,7 +2116,7 @@ I'm in 485
 8912\ Nysen / Murakatos /
 8913\ Poeriguard / Orcogre /
 8914\ Murakatos / Secretary /
-8915\ Again …
+8915\ Again Â…
 8916\ Boden Doi...
 8917\ Darn / Kaymus Turan /
 8918\ Kyuden / Dionysius /
@@ -4615,7 +4615,7 @@ I'm in 485
 12907\
 12908\
 12909\
-12911\ Don Balloon He’s the boss of the family.
+12911\ Don Balloon HeÂ’s the boss of the family.
 12912\
 12913\ I can't say that.
 12914\
@@ -5363,14 +5363,14 @@ I'm in 485
 17905\ And when the smoke clears Munch wasn't there either. Just a small pouch It was just left on the floor.
 17910\ Brother Moser's Pharmacy
 17915\ There are cars and Dusty boxes lined up A strong, pungent smell It was filling the air.
-17916\ Inspired, In your eyes “Tears started to flow.
+17916\ Inspired, In your eyes Â“Tears started to flow.
 17930\ Mustard-pickled bat tea It's awesome. -Should I buy a bottle ? No, you guys
 17935\ Keep silent / answer /
 17936\
 17937\ Where the dreamers go "You know what ?
 17945\ The Land of Dreamers Did you know ?
 17947\ What I dream of When you know where you're going Let me teach you more.
-17950\ Ai …
+17950\ Ai Â…
 17955\ Bodendoy...
 17970\ Grand Melange, A dream omen... It lurks within you It is said to be an invisible monster. It is your heart
 17971\ Search for your inner dream. Once you find it Your dreams will come true too. This is how the legend ended
@@ -5447,7 +5447,7 @@ I'm in 485
 18530\ And This Lara Yobu
 18535\ =967 say / -don't say /
 18536\
-18537\ "Brother, I What can I do ? ” Do you say the password ?
+18537\ "Brother, I What can I do ? Â” Do you say the password ?
 18540\ No / That's right /
 18541\
 18542\ Holy City, To Munkharama Are you going ?
@@ -5478,7 +5478,7 @@ I'm in 485
 18687\ Deep in the temple The groundwater flowing from the river It's overflowing onto the floor. We the righteous, Beyond that
 18688\ Search. Next to the gold face There is the true path ! Once you have obtained your sacred mission
 18689\ Be grateful." Would you tell him this? He sang Once you start, follow through. As a result, He is the one
-18720\ Ai …
+18720\ Ai Â…
 18725\ Boden Doi...
 18750\ Cable wagon Once installed, you Turn the crank We started crossing the river.
 18810\ You guys are comfortable I was standing in a rural setting. The air is fresh and the training is The voices of the piled-up Munchs
@@ -5771,7 +5771,7 @@ I'm in 485
 20315\ The magic juice works immediately. But the magic feather Throw it far away.
 20340\ While keeping an eye on As I entered the hall, Just like A cloud of smoke enveloped the room. A strange darkness greeted my eyes.
 20345\ Balloon The Society of Tao
-20350\ From somewhere nearby, Someone whispered The one whispering “I heard it. To you guys, What is happening there?
+20350\ From somewhere nearby, Someone whispered The one whispering Â“I heard it. To you guys, What is happening there?
 20355\ Mom, what's the surprising thing? It seems there are plenty...
 20360\ Inside the room Of sturdy build There was a group of Ratkins. They were armed with weapons
 20361\ There is an evil presence around He was floating, but at the same time he said He also had a charm that is hard to put into words. They are full of confidence
@@ -5871,7 +5871,7 @@ I'm in 485
 20805\ When you step on the moving belt It carried you down the hallway.
 20807\ Otto ! You guys accidentally saw the candlestick on the wall. I noticed it was loose !
 20810\ _Just a little bit of water Going down the waterway with great force It was flowing down, but you What is it for?
-20811\ At least, there is a The only thing is that it doesn't stand up. “It didn’t seem like it.
+20811\ At least, there is a The only thing is that it doesn't stand up. Â“It didnÂ’t seem like it.
 20818\ Go into the water, You guys I slid down the waterway.
 20820\ A little ahead of you A strange transparent dome It's sticking out.
 20825\ If you look closely at the dome On its surface There was a big hole. It was like a hollow tube.
@@ -6510,7 +6510,7 @@ I'm in 485
 24276\
 24277\ Lost children, Thy What is the price of faith? So does that prove it ?
 24280\ Oh, Our friends are Your feelings Let's accept it gratefully. Now, your wallet is heavy
-24285\ As expected, you have already I have received the light. “Good Brother !
+24285\ As expected, you have already I have received the light. Â“Good Brother !
 24290\ I refuse / Okay /
 24291\
 24292\ How about 100GP ?
@@ -6607,7 +6607,7 @@ I felt like I couldn't stay there any longer . In fact, in my head Any other tho
 24840\ Black iron head with devil horns "You took a step back. And ready your weapon I prepared a spell.
 24845\ But, Nothing happened.
 24850\ Magna Darn Temple
-24860\ You drift into the room The scene of debauchery, Too much Seeing the lewd and disrespectful behavior “I rolled my eyes.
+24860\ You drift into the room The scene of debauchery, Too much Seeing the lewd and disrespectful behavior Â“I rolled my eyes.
 24870\ To the heights of Dahn's house Nice climb ! But you're not Darn. You cannot become the master of Daan.
 24871\ If you are in the pit of proliferation If you're up to the challenge ! The choice is yours. Will you face the test of the proliferation pitfall?
 24880\ Try to find a hole / give up /
@@ -6673,7 +6673,7 @@ I felt like I couldn't stay there any longer . In fact, in my head Any other tho
 25255\ It's so beautiful Nobody else cares I couldn't pay attention.
 25260\ Bronbadeg Until it floats up !
 25265\ Blood-filled water surface The giant carcass falls into the depths of the ocean Sinking, terrifying It put an end to the legend.
-25266\ A true legend is not so easy Maybe it’s not available.
+25266\ A true legend is not so easy Maybe itÂ’s not available.
 25280\ _Deep in the Dragon's Den You are the unlucky adventurers I discovered a skeleton. Deep inside the cave is a large
 25281\ It was the home of dragons Did you notice that? I was curious. You are the last pirates to die.
 25282\ All for kids, imagination So that's the ghost story that came about. I thought to myself and pulled myself together. What is this bone?
@@ -6800,7 +6800,7 @@ I felt like I couldn't stay there any longer . In fact, in my head Any other tho
 25980\ I continued to search carefully, but I couldn't find anything.
 25985\ Main console As I was searching around, "There is a strange dent. To the left of the console
 25990\ When I check the console You guys are inconspicuous I found the button. Press the button
-25991\ A voice rang out from the console. "In your hands, The last key There is a ring that is a part of it. “Use it wisely.
+25991\ A voice rang out from the console. "In your hands, The last key There is a ring that is a part of it. Â“Use it wisely.
 26000\ When you push the necklace into the hole It fit perfectly. However, Nothing happened.
 26005\ As you leave the ship, A way to escape this planet I was relieved to find it. of course, All of that
 26100\
@@ -7063,7 +7063,7 @@ Battle of the 20th Century is Over You know his body I watched it disappear. You
 28104\ obtained, I thought to myself and gave up. And you guys I decided to call a partner.
 28130\
 28131\ But, Something was different.
-28140\ "Gentlemen You have that ! ” As soon as I heard that voice You guys have strong backs.
+28140\ "Gentlemen You have that ! Â” As soon as I heard that voice You guys have strong backs.
 28145\ Dark Savant He wasn't dead !
 28150\ Bloody and beaten down Vi Domina is Terrifying Savant To I was in a tight grip.
 28151\ I'll tear off that thin neck I just clenched my fist in frustration.
@@ -7097,7 +7097,7 @@ Battle of the 20th Century is Over You know his body I watched it disappear. You
 28400\ No entry zone Savant Control Return to the station Your friends, V To Domina
 28401\ The meaning of all that happened I remembered. Phonzang's Ball Within the Astral Domina
 28402\ What kind of place is it? And celebrate her life The good fortune that is To you too Will he smile like me?
-28403\ What kind of future are you heading for? I think it’s the world "In your hearts Various questions were swirling around.
+28403\ What kind of future are you heading for? I think itÂ’s the world "In your hearts Various questions were swirling around.
 28404\ , so I gave up. And you have a partner "I decided to call.
 28550\ Suddenly, Breaking through the door A fierce offensive and defensive battle unfolds A group of people rushed in.
 28555\ Teerang and Ampani The armies, each with their swords and guns, With magic wand and magic spells They were fighting with ferocious force.
@@ -7111,17 +7111,17 @@ Battle of the 20th Century is Over You know his body I watched it disappear. You
 28592\
 28610\ Inside the giant Ambani ship You are Ampani Wear the badge on your chest I looked outside at the stars.
 28611\ About Images There was no one to speak. And finally she I woke up.
-28612\ Where did it go? I know that.” You are my daughter. I was amazed at its strength.
+28612\ Where did it go? I know that.Â” You are my daughter. I was amazed at its strength.
 28613\ While Traveling Among the Stars There was much to learn. And above all, this is It was only the beginning.
 28614\ You will meet him. During the journey, you will be guided by Ambani's Talking to them on the spaceship Not at all like yours.
 28615\ I listened to many stories. She is the mechanism of the universe And various other Regarding that, about
-28616\ Including World Your awareness has expanded. "a little bit, Look at this.” Rising at an unexpected time
+28616\ Including World Your awareness has expanded. "a little bit, Look at this.Â” Rising at an unexpected time
 28617\ Someday, We have to settle this. The time will come when this will not happen.
 28650\
 28660\ Shiiiiiiii ! Come with me ! Savant is our I took the prize. However, I won't let you get away.
 28661\
 28670\ The giant T'Lang mothership In the narrow and gloomy cabin "You are in space I peered into the starry sky.
-28671\ And finally she I woke up. "That guy You took it, didn’t you ? ”
+28671\ And finally she I woke up. "That guy You took it, didnÂ’t you ? Â”
 28672\ You guys, Daughter's I was amazed at its strength. She is one of the Despite the wounds
 28673\ And above all, this It was just the beginning. Somewhere far away, Savant The shadow is moving.
 28674\ During your journey, It seems almost mystical The customs of the Teerung A little bit about life
