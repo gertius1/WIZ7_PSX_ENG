@@ -1,0 +1,118 @@
+This doc collects all information found out about the Wiz7 PSX ROM
+
+1. General information
+1.1 Indices
+2. List of files
+3. Romhacks in PSX.EXE 
+4. Nice to have
+
+
+
+1. General information
+============================================
+The text format at first seemed to be very similar between PSX and PC version.
+There were similar files like MSG.HDR and DBR on PC and MSGJ.HDR and DBR on PSX.
+There was still alot of work resulting, even though the files looked similar at first.
+The procedure was to unpack the text contents from both version, compare them, make the necessary changes, repack them and put them into the PSX version.
+All the changes were made in the file for the English version MSGHDR_indexText.txt in the main folder of the repository.
+There are corresponding software tools (concretely the function writeDBSFromCSV()), that "compile" the txt file to a MSGJ.HDR and MSGJ.DBS file.
+These were then copied into the PSX data tree.
+
+For comparison, there were made two different extracts for the Japanese PSX version:
+
+- MSGHDRJ_indexText.txt:		 
+is only the "naked" huffman decoding. This does not result in readable text, but clearly shows all the Japanese function codes (=K, =953, .... see full list in function stringContainsFunctionCode()).
+- ocr_out_GoogleVision_formatiert_GoogleTranslate_ENG_markedMain.txt: 
+this is a readable translation for the Japanese version. In an automated process, all textstrings have been shown ingame at a certain space, and a screenshot has been taken.
+This screenshot was preprocessed (isolating letters, adjusting contrast, inversion), and uploaded to Google vision via UIpath to convert it into Japanese writing (ocr_out_GoogleVision.txt).
+This file was then formatted and uploaded to Google Translate, to have an English translation and thus a base for comparison with the English original.
+
+While comparing there was a lot of switching between both versions, to compare both semantic text contents and also function codes with the English original.
+The English original was adapted to fit the structure of the Japanese file.
+
+The function codes were transferred manually, then compared and checked automatically by the function compareFunctionCodes() and it´s section  //match function Codes.
+In the same function there was also a section //match indices which made sure that all indices from the JAP version show in the ENG version.
+
+The work was in the details. PSX and PC version were -almost- the same, except for very notable differences:
+- English PC version had many more subindices for each mainindex, as the English text contents are simply longer (have more letters) than Japanese.
+- Questions are handled differently in Japanese with a menu for selection, so at almost every question there were additional indices inserted.
+- Function codes were completely different between ENG and JAP version. Removed most of ENG function codes and added the codes from JAP version.
+- many NPC dialogs or replies are only visible if a function code was triggered beforehand through a previos dialog option (=9xx, function codes).
+It had to be made certain that all those codes are transferred correctly, as not to block advancement through the storyline/questlines
+- what made it even more difficult was that the exe hack for the linebreaks (see below) was sometimes in conflict with the function codes, as this is somehow interconnected.
+Sometimes the function codes were not read correctly, so every code had to be checked individually ingame.
+
+1.1 Indices
+============
+The way indices work are that there are main indices and subindices. 
+All main indices have an entry in the respective HDR file. Then there is a certain byte behind the main index that shows how many subindices are attached.
+
+The game seemingly only addresses main indices as entry point for a textwindow. 
+But once the mainindex was displayed, all subindices automatically follow. Thi way longer texts are realized.
+There is not only sematic differentiation between indices, but also a technical one:
+A new main index is also created, whenever a data block of 0x400 in size is crossed over to the next data block.
+This had to be taken into account in the hack´s software tools, when creating the new header file.
+For easier visual comparison, the main indices have been marked with an asterisk in the files:
+MSGHDR_indexText_markedMain.txt (part of the marked main indices has the been taken over into MSGHDR_indexText.txt)
+ocr_out_GoogleVision_formatiert_GoogleTranslate_ENG_markedMain.txt.
+
+2. List of files
+============================================
+CDS/D/MISCJ.HDR => Huffman tree for text encoding
+CDS/D/MSGJ.DBS => All ingame strings, Huffman coded, according to MISCJ.HDR (Huffman tree)
+CDS/D/MSGJ.HDR => Header, contains index information; Format BigEndian; 
+first twwo bytes unclear, maybe nrOfIndices, then all indices follow, each has 6 bytes:
+Index 2 bytes, DBS Position 2 bytes, Substrings 1 byte, nrOfBlock (0x400 sized blocks) 1 byte
+max size of DBS file is 0x3FFFF because only one byte is available for nrOfBlock (0xFF * 0x400)
+CDS/D/PCFILE contains starting characters, same fileformat as on PC, can be replaced with hex editor
+CDS/D/SCENARIJ.DBS => Monsters and Items, ASCII encoding, can be exchanged directly, subtle differences had to be adapted ("=" for "of")
+At the end there was a difference in the script "THE SPACESHIP" id77. We took over all ENG scripts, but the JAP worked different. Had to be taken over from JAP to ENG using the Cosmic Forge incident editor. 
+CDS/D/SCENARIO.HDR => Header
+
+CDS/D/ZENKAKU.TBL font Table 16Bit. read with function FUN_ASCIItoZENKAKU (exe 8006cb80):
+function takes index as input and outputs bytepair for letter, was not used directly, but had to be modified in rom to fix small and capital letters
+in PSX.EXE changed position 0x5D3F8 from 60=>70, to enable small letters in English text(decompiled with Ghidra, comparison value of 0x5F seemed to be wrong and cut off table prematurely)
+
+CDS/D/TALK.SCR: contains NPC dialog questions/topics (also see English TALK.txt of this  hack for better understanding). 
+Is grouped into topics (MISC/PPLE/PLCS/FOLK). These topics will be combined with a general topic list, which almost every NPC has (line 24). 
+Grouping only seems to work if the category names  are the same.
+The rest is structured as follows:
+one line per NPC, first the category, then the subtopics. Subtopics always start with a two-byte address that links to the text index of the NPC reply. 
+After that either comes a 2-byte function code (starting with a #) if the topic needs to be unlocked first (by e.g. another conversation question).
+If the topic does not have to be unlocked beforehand, it will come directly after the pointer address.
+
+CDS/M/OPEN.TXT contains video subtitles
+Format is Zenkaku letters, 2byte hex.
+It´s the Japanese Textformat without Huffmancoding (Gamestrings are Huffman=>Zenkaku)
+It´ s possible to just paste in extracted gamestrings for displaying them in intro movie
+#t16
+#[58,207]„ÖGIV€1‡<M„co¢G†Ó‚£U‹dŽ^R
+#[58,219]Œ¬ŒTOŒÆ…a¥„]gMjJM5M€ÜG€2
+#t120
+The two lines with #t give the display time start/end
+The numbers in brackets are [x,y] coordinates where the text will be displayed onscreen.
+
+
+3. Romhacks in PSX.EXE 
+============================================
+- fix small/capital letters in English text display:
+this possibly was a bug in the Japanese PSX version, as some  ASCII letters were not able to show the small letter version.
+It was in function FUN_ASCIItoZENKAKU (PSX.EXE  8006cb80). It takes index as input and outputs bytepair for letter, was not used directly, but had to be modified in rom to fix small and capital letters
+in PSX.EXE changed position 0x5D3F8 from 60=>70, to enable small letters in English text(decompiled with Ghidra, comparison value of 0x5F seemed to be wrong and cut off table prematurely)
+
+- fix one word per line Japanese display: in the Japanese version, there is a linebreak with each space character, resulting in displaying only one word per line.
+This behaviour was changed with this Romhack to fit the english version and make use of all 15 characters in each line. There was a new function inserted at the end of PSX.EXE  (0xBA000), 
+see AssemblerIncets/LineBreak16char_1.2_final.txt. 
+
+Then the respective function call was rerouted in PSX.EXE address 0x8005c828 (changed for a jump to address 0xBA000)
+Original:
+8005c828 c2 b5 01 0c    jal  
+Hacked:
+8005c828 00 26 03 0C	jal
+
+4. Nice to have
+============================================
+A list of open todos that were not yet worked on during this hack:
+- adapt font to have less font width to fit more characters in story textwindow
+- make background of storytext window darker for better readability
+- increase size of menu windows to fit more charactesrs of longer English strings
