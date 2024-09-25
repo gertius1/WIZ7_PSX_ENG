@@ -60,7 +60,7 @@ ocr_out_GoogleVision_formatiert_GoogleTranslate_ENG_markedMain.txt.
 2. List of files
 ============================================
 CDS/D/MISCJ.HDR => Huffman tree for text encoding
-CDS/D/MSGJ.DBS => All ingame strings, Huffman coded, according to MISCJ.HDR (Huffman tree)
+CDS/D/MSGJ.DBS => All ingame strings, Huffman encoded, according to MISCJ.HDR (Huffman tree). Text encoding is unknown, but not Shift-JIS or EUC-JP
 CDS/D/MSGJ.HDR => Header, contains index information; Format BigEndian; 
 first two bytes unclear, maybe nrOfIndices, then all indices follow, each has 6 bytes:
 Index 2 bytes, DBS Position 2 bytes, nr of substrings 1 byte, nrOfBlock (0x400 sized blocks) 1 byte
