@@ -103,7 +103,7 @@ in PSX.EXE changed position 0x5D3F8 from 60=>70, to enable small letters in Engl
 
 - fix one word per line Japanese display: in the Japanese version, there is a linebreak with each space character, resulting in displaying only one word per line.
 This behaviour was changed with this Romhack to fit the english version and make use of all 15 characters in each line. There was a new function inserted at the end of PSX.EXE  (0xBA000), 
-see AssemblerIncets/LineBreak16char_1.2_final.txt. 
+see AssemblerInjects/LineBreak16char_1.2_final.txt. 
 
 Then the respective function call was rerouted in PSX.EXE address 0x8005c828 (changed for a jump to address 0xBA000)
 Original:
