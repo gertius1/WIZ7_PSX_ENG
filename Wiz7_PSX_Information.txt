@@ -45,7 +45,8 @@ Sometimes the function codes were not read correctly, so every code had to be ch
 1.1 Indices
 ============
 The way indices work are that there are main indices and subindices. 
-All main indices have an entry in the respective HDR file. Then there is a certain byte behind the main index that shows how many subindices are attached.
+All main indices have an entry in the respective HDR file. 
+Then there is a certain byte behind the main index that shows how many subindices are attached (see format description at List of files below).
 
 The game seemingly only addresses main indices as entry point for a textwindow. 
 But once the mainindex was displayed, all subindices automatically follow. Thi way longer texts are realized.
@@ -61,8 +62,8 @@ ocr_out_GoogleVision_formatiert_GoogleTranslate_ENG_markedMain.txt.
 CDS/D/MISCJ.HDR => Huffman tree for text encoding
 CDS/D/MSGJ.DBS => All ingame strings, Huffman coded, according to MISCJ.HDR (Huffman tree)
 CDS/D/MSGJ.HDR => Header, contains index information; Format BigEndian; 
-first twwo bytes unclear, maybe nrOfIndices, then all indices follow, each has 6 bytes:
-Index 2 bytes, DBS Position 2 bytes, Substrings 1 byte, nrOfBlock (0x400 sized blocks) 1 byte
+first two bytes unclear, maybe nrOfIndices, then all indices follow, each has 6 bytes:
+Index 2 bytes, DBS Position 2 bytes, nr of substrings 1 byte, nrOfBlock (0x400 sized blocks) 1 byte
 max size of DBS file is 0x3FFFF because only one byte is available for nrOfBlock (0xFF * 0x400)
 CDS/D/PCFILE contains starting characters, same fileformat as on PC, can be replaced with hex editor
 CDS/D/SCENARIJ.DBS => Monsters and Items, ASCII encoding, can be exchanged directly, subtle differences had to be adapted ("=" for "of")
