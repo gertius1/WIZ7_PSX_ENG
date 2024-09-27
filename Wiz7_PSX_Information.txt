@@ -31,12 +31,12 @@ While comparing there was a lot of switching between both versions, to compare b
 The English original was adapted to fit the structure of the Japanese file.
 
 The function codes were transferred manually, then compared and checked automatically by the function compareFunctionCodes() and it´s section  //match function Codes.
-In the same function there was also a section //match indices which made sure that all indices from the JAP version show in the ENG version.
+In the same function there was also a section //match indices which made sure that all indices from the JP version show in the ENG version.
 
 The work was in the details. PSX and PC version were -almost- the same, except for very notable differences:
 - English PC version had many more subindices for each mainindex, as the English text contents are simply longer (have more letters) than Japanese.
 - Questions are handled differently in Japanese with a menu for selection, so at almost every question there were additional indices inserted.
-- Function codes were completely different between ENG and JAP version. Removed most of ENG function codes and added the codes from JAP version.
+- Function codes were completely different between ENG and JP version. Removed most of ENG function codes and added the codes from JP version.
 - many NPC dialogs or replies are only visible if a function code was triggered beforehand through a previos dialog option (=9xx, function codes).
 It had to be made certain that all those codes are transferred correctly, as not to block advancement through the storyline/questlines
 - what made it even more difficult was that the exe hack for the linebreaks (see below) was sometimes in conflict with the function codes, as this is somehow interconnected.
@@ -67,7 +67,7 @@ Index 2 bytes, DBS Position 2 bytes, nr of substrings 1 byte, nrOfBlock (0x400 s
 max size of DBS file is 0x3FFFF because only one byte is available for nrOfBlock (0xFF * 0x400)
 CDS/D/PCFILE contains starting player characters, same fileformat as on PC, can be replaced with hex editor
 CDS/D/SCENARIJ.DBS => Monsters and Items, ASCII encoding, can be exchanged directly, subtle differences had to be adapted ("=" for "of")
-At the end there was a difference in the script "THE SPACESHIP" id77. Took over all ENG scripts, but the JAP worked different. Had to be taken over from JAP to ENG using the Cosmic Forge incident editor. 
+At the end there was a difference in the script "THE SPACESHIP" id77. Took over all ENG scripts, but the JP worked different. Had to be taken over from JP to ENG using the Cosmic Forge incident editor. 
 CDS/D/SCENARIO.HDR => Header
 
 CDS/D/ZENKAKU.TBL font Table 16Bit. read with function FUN_ASCIItoZENKAKU (exe 8006cb80):
