@@ -87,8 +87,8 @@ THANKS!!!
 Links
 ==========================
 Release thread (general discussion and bug reports):
-https://neoromhacking.net/thread.php?pid=902#xwnd1
-
+[https://neoromhacking.net/thread.php?pid=902#xwnd1
+](https://www.romhacking.net/forum/index.php?topic=39610)
 Release download link:
 www.zaqmusic.com/WIZ7/WIZ7_ENG_PATCH_V1_0.zip
 
