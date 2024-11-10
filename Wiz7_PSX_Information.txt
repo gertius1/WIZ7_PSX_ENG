@@ -49,8 +49,8 @@ All main indices have an entry in the respective HDR file.
 Then there is a certain byte behind the main index that shows how many subindices are attached (see format description at List of files below).
 
 The game seemingly only addresses main indices as entry point for a textwindow. 
-But once the mainindex was displayed, all subindices automatically follow. Thi way longer texts are realized.
-There is not only sematic differentiation between indices, but also a technical one:
+But once the mainindex was displayed, all subindices automatically follow. This way longer texts are realized.
+There is not only semantic differentiation between indices, but also a technical one:
 A new main index is also created, whenever a data block of 0x400 in size is crossed over to the next data block.
 This had to be taken into account in the hack´s software tools, when creating the new header file.
 For easier visual comparison, the main indices have been marked with an asterisk in the files:
